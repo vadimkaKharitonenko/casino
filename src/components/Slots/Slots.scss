@@ -1,0 +1,26 @@
+.Slots-container {
+  position: relative;
+  display: flex;
+  width: 600px;
+  height: 400px;
+  overflow: hidden;
+  padding: 10px 10px 100px 10px;
+  margin: 0 auto;
+  border: 2px solid black;
+
+  .Slots {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .Bar-Control {
+    position: absolute;
+    top: 86%;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+  }
+}
