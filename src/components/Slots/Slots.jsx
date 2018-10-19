@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './Slots.scss';
 import Slot from '../Slot/Slot';
 import Bet from '../Bet/Bet';
@@ -23,6 +24,15 @@ class Slots extends Component {
     this.setState({
       isUpdate: true,
     });
+
+    const barControl = ReactDOM.findDOMNode(this._spinButton); // находим кнопку спина
+
+    barControl.disabled = true;                                // и деактивируем ее
+
+    setTimeout(() => {
+      barControl.disabled = false;
+    },3000);                                                   // а после прокрутки, снова активируем
+
 
     this.balance -= this.currentBet; // вычитаем из баланса сумму ставки
 
@@ -50,19 +60,19 @@ class Slots extends Component {
     &&(this.arrCentral[1].textContent === this.arrCentral[2].textContent)) {
       switch(this.arrCentral[0].textContent) { // считаем сумму выигрыша
         case 'J':
-          this.totalWin = this.state.arrWin[0] * 3 * this.currentBet * 0.1;
+          this.totalWin = this.state.arrWin[0] * 3 * this.currentBet * 0.2;
           break;
         case 'Q':
-          this.totalWin = this.state.arrWin[1] * 3 * this.currentBet * 0.1;
+          this.totalWin = this.state.arrWin[1] * 3 * this.currentBet * 0.2;
           break; 
         case 'K':
-          this.totalWin = this.state.arrWin[2] * 3 * this.currentBet * 0.1;
+          this.totalWin = this.state.arrWin[2] * 3 * this.currentBet * 0.2;
           break;
         case 'A':
-          this.totalWin = this.state.arrWin[3] * 3 * this.currentBet * 0.1;
+          this.totalWin = this.state.arrWin[3] * 3 * this.currentBet * 0.2;
           break;
         case 'Wild':
-          this.totalWin = this.state.arrWin[4] * 3 * this.currentBet * 0.1;
+          this.totalWin = this.state.arrWin[4] * 3 * this.currentBet * 0.2;
           break;
         default:
           break;
@@ -72,7 +82,10 @@ class Slots extends Component {
     this.balance += this.totalWin; // прибавляем выигрыш к балансу
 
     if (this.totalWin !== 0) {
-      alert('You win: ' + this.totalWin);
+      alert('You won: ' + this.totalWin);
+      this.setState({
+        isUpdate: true,
+      });
       this.totalWin = 0; // обнуляем значение выигрыша
     }
   }
@@ -97,7 +110,7 @@ class Slots extends Component {
           <div className="bet">
             <Bet getBet={this.getBet}/>
           </div>
-          <button className="Spin" onClick={this.spin}>SPIN</button>
+          <button className="Spin" onClick={this.spin} ref={(node) => {this._spinButton = node;}}>SPIN</button>
           <Balance getBalance={this.getBalance} 
                    currentBalance={this.balance}/>
         </section>
