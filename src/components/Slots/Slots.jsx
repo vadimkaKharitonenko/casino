@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Slots.scss';
 import Slot from '../Slot/Slot';
 import Bet from '../Bet/Bet';
+import Balance from '../Balance/Balance'; 
 
 class Slots extends Component {
   constructor(props) {
@@ -9,22 +10,72 @@ class Slots extends Component {
 
     this.state = {
       isUpdate: false,
-      balance: 5000, // баланс
+      arrWin: [10,30,50,70,100],
     }
 
+    this.balance = 5000;
     this.currentBet = 20; // ставка
+    this.arrCentral = []; // массив с центральными элементами
+    this.totalWin = 0;
   }
 
   spin = () => { // крутить спин
     this.setState({
       isUpdate: true,
-      balance: this.state.balance - this.currentBet,
     });
+
+    this.balance -= this.currentBet; // вычитаем из баланса сумму ставки
+
+    setTimeout(() => { // вызываем функцию, определяющую выигрыш и обнуляем старые значение в центральной линии
+      this.centralWin();
+      this.arrCentral = [];
+    }, 3000);
   }
 
   getBet = (value) => { // получить текущую ставку из ребенка Bet
     this.currentBet = value;
   } 
+
+  getBalance = (value) => { // родитель получает баланс
+    this.balance = value;
+  }
+
+  getCentralItem = (value) => { // получаем значения итемов в центральной горизонтали
+    this.arrCentral[this.arrCentral.length] = value;
+  }
+
+  centralWin = () => { // определяет выигрыш по центральной горизонтали
+    console.log(this.arrCentral);
+    if ((this.arrCentral[0].textContent === this.arrCentral[1].textContent)
+    &&(this.arrCentral[1].textContent === this.arrCentral[2].textContent)) {
+      switch(this.arrCentral[0].textContent) { // считаем сумму выигрыша
+        case 'J':
+          this.totalWin = this.state.arrWin[0] * 3 * this.currentBet * 0.1;
+          break;
+        case 'Q':
+          this.totalWin = this.state.arrWin[1] * 3 * this.currentBet * 0.1;
+          break; 
+        case 'K':
+          this.totalWin = this.state.arrWin[2] * 3 * this.currentBet * 0.1;
+          break;
+        case 'A':
+          this.totalWin = this.state.arrWin[3] * 3 * this.currentBet * 0.1;
+          break;
+        case 'Wild':
+          this.totalWin = this.state.arrWin[4] * 3 * this.currentBet * 0.1;
+          break;
+        default:
+          break;
+      }
+    }
+
+    this.balance += this.totalWin; // прибавляем выигрыш к балансу
+
+    if (this.totalWin !== 0) {
+      alert('You win: ' + this.totalWin);
+      this.totalWin = 0; // обнуляем значение выигрыша
+    }
+  }
 
   shouldComponentUpdate(nextState) { // обновляем
     if(this.state.isUpdate !== nextState.isUpdate) {
@@ -38,16 +89,17 @@ class Slots extends Component {
     return (
       <div className="Slots-container">
         <section className="Slots" ref={(node) => {this._slots = node;}}>
-          <Slot key="1" serialNumber={1}/>
-          <Slot key="2" serialNumber={2}/>
-          <Slot key="3" serialNumber={3}/>
+          <Slot key="1" serialNumber={1} getCentralItem={this.getCentralItem}/>
+          <Slot key="2" serialNumber={2} getCentralItem={this.getCentralItem}/>
+          <Slot key="3" serialNumber={3} getCentralItem={this.getCentralItem}/>
         </section>
         <section className="Bar-Control">
           <div className="bet">
             <Bet getBet={this.getBet}/>
           </div>
           <button className="Spin" onClick={this.spin}>SPIN</button>
-          <div className="balance">Баланс: {this.state.balance}</div>
+          <Balance getBalance={this.getBalance} 
+                   currentBalance={this.balance}/>
         </section>
       </div>
     );
