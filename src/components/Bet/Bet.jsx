@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './Bet.scss';
 
 class Bet extends Component {
@@ -40,13 +41,25 @@ class Bet extends Component {
     this.props.getBet(this.currentBet); // передаем в родителя текущую ставку
   }
 
+  componentDidUpdate() {
+    const betUpNode = ReactDOM.findDOMNode(this._betUp);     // получаем ноду кнопки повышения ставки
+    const betDownNode = ReactDOM.findDOMNode(this._betDown); // и понижения ставки
+    betUpNode.disabled = true;                               // делаем их неактивными на время вращения спина
+    betDownNode.disabled = true;
+
+    setTimeout(() => {                                       // а затем опять активируем
+      betUpNode.disabled = false;
+      betDownNode.disabled = false;
+    }, 3000);
+  }
+
   render() {
     return(
       <div className="Bet">
         Ставка: {this.currentBet}
         <div className="bet-control">
-          <button className="betUp" onClick={this.betUp}>Up</button>
-          <button className="betDown" onClick={this.betDown}>Down</button>
+          <button className="betUp" onClick={this.betUp} ref={(node) => {this._betUp = node;}}>Up</button>
+          <button className="betDown" onClick={this.betDown} ref={(node) => {this._betDown = node;}}>Down</button>
         </div>
       </div>
     )

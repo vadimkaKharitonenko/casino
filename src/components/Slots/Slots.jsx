@@ -30,8 +30,8 @@ class Slots extends Component {
     barControl.disabled = true;                                // и деактивируем ее
 
     setTimeout(() => {
-      barControl.disabled = false;
-    },3000);                                                   // а после прокрутки, снова активируем
+      barControl.disabled = false;                             // а после прокрутки, снова активируем
+    },3000);                                                   
 
 
     this.balance -= this.currentBet; // вычитаем из баланса сумму ставки
@@ -55,7 +55,6 @@ class Slots extends Component {
   }
 
   centralWin = () => { // определяет выигрыш по центральной горизонтали
-    console.log(this.arrCentral);
     if ((this.arrCentral[0].textContent === this.arrCentral[1].textContent)
     &&(this.arrCentral[1].textContent === this.arrCentral[2].textContent)) {
       switch(this.arrCentral[0].textContent) { // считаем сумму выигрыша
@@ -108,7 +107,7 @@ class Slots extends Component {
         </section>
         <section className="Bar-Control">
           <div className="bet">
-            <Bet getBet={this.getBet}/>
+            <Bet getBet={this.getBet} ref={(node) => {this._bet = node;}}/>
           </div>
           <button className="Spin" onClick={this.spin} ref={(node) => {this._spinButton = node;}}>SPIN</button>
           <Balance getBalance={this.getBalance} 
