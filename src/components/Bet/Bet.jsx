@@ -44,13 +44,8 @@ class Bet extends Component {
   componentDidUpdate() {
     const betUpNode = ReactDOM.findDOMNode(this._betUp);     // получаем ноду кнопки повышения ставки
     const betDownNode = ReactDOM.findDOMNode(this._betDown); // и понижения ставки
-    betUpNode.disabled = true;                               // делаем их неактивными на время вращения спина
-    betDownNode.disabled = true;
-
-    setTimeout(() => {                                       // а затем опять активируем
-      betUpNode.disabled = false;
-      betDownNode.disabled = false;
-    }, 3000);
+    
+    this.props.getBetControls(betUpNode, betDownNode);       // отправляем кнопки в родителя
   }
 
   render() {

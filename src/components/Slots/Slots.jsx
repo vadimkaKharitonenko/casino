@@ -18,12 +18,17 @@ class Slots extends Component {
     this.currentBet = 20; // ставка
     this.arrCentral = []; // массив с центральными элементами
     this.totalWin = 0;
+
+    this.betUpNode = '';
+    this.betDownNode = '';
   }
 
   spin = () => { // крутить спин
     this.setState({
       isUpdate: true,
     });
+
+    this.getBetButtonsControl(); // получаем кнопки управления величиной ставки
 
     const barControl = ReactDOM.findDOMNode(this._spinButton); // находим кнопку спина
 
@@ -89,6 +94,21 @@ class Slots extends Component {
     }
   }
 
+  getBetButtonsControl = (button1, button2) => { // функция отключения кнопок управления ставкой
+    this.betUpNode = button1;                    // на время вращения спина
+    this.betDownNode = button2;
+
+    if (this.betUpNode !== undefined) {
+      this.betUpNode.disabled = true;
+      this.betDownNode.disabled = true;
+    }
+
+    setTimeout(() => {
+      this.betUpNode.disabled = false;
+      this.betDownNode.disabled = false;
+    }, 3000);
+  }
+
   shouldComponentUpdate(nextState) { // обновляем
     if(this.state.isUpdate !== nextState.isUpdate) {
       return true;
@@ -107,7 +127,7 @@ class Slots extends Component {
         </section>
         <section className="Bar-Control">
           <div className="bet">
-            <Bet getBet={this.getBet} ref={(node) => {this._bet = node;}}/>
+            <Bet getBet={this.getBet} ref={(node) => {this._bet = node;}} getBetControls={this.getBetButtonsControl}/>
           </div>
           <button className="Spin" onClick={this.spin} ref={(node) => {this._spinButton = node;}}>SPIN</button>
           <Balance getBalance={this.getBalance} 
