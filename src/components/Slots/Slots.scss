@@ -6,7 +6,6 @@
   overflow: hidden;
   padding: 10px 10px 100px 10px;
   margin: 0 auto;
-  border: 2px solid black;
 
   .Slots {
     position: relative;
@@ -24,10 +23,117 @@
     width: 600px;
 
     .Spin {
-      border-radius: 50%;
-      width: 60px;
+      outline: none;
+      border-radius: 20px;
+      width: 140px;
       height: 60px;
+      font-size: 1.2rem;
       cursor: pointer;
+      color: white;
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px #0ff,
+        0 0 80px #0ff,
+        0 0 90px #0ff,
+        0 0 100px #0ff,
+        0 0 150px #0ff;
+      background: black;
+      border: 1px solid rgb(76, 159, 143);;
+      border-radius: 30px;
+      box-shadow: 0 0 10px rgb(187, 254, 241), 0 0 10px rgb(187, 254, 241) inset;  
+      transition: all .2s linear;
+      
+      &:hover {
+        box-shadow: 0 0 20px rgb(187, 254, 241), 0 0 25px rgb(187, 254, 241) inset;
+      }
     }
+  }
+
+  .Slots {
+    --primary-neon:rgb(80, 234, 204);
+    --light-neon:rgb(187, 254, 241);
+    --pulse-neon:rgb(76, 159, 143);
+    --bright-neon:rgb(144, 185, 177);
+    --off-neon:#333;
+    
+    --neon-shadow:0 0 7px 4px var(--light-neon), 0 0 7px 4px var(--light-neon) inset;
+    --neon-shadow-pulse:0 0 8px 5px var(--pulse-neon), 0 0 8px 5px var(--pulse-neon) inset;
+    --neon-shadow-bright:0 0 8px 4px var(--bright-neon), 0 0 8px 4px var(--bright-neon) inset;
+    --neon-shadow-text:0 0 7px var(--primary-neon);
+    
+    border:3px solid var(--primary-neon);
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-transform:uppercase;
+    color: transparent;
+    font-size:3vw;
+    font-weight:bold;
+    box-shadow:var(--neon-shadow);
+    animation:flicker 10s linear infinite;
+  }
+}
+
+@keyframes flicker {
+  0% {
+    box-shadow:var(--neon-shadow);
+  }
+  45% {
+    box-shadow:var(--neon-shadow-pulse);
+  }
+  90% {
+    box-shadow:var(--neon-shadow);
+    border-color:var(--primary-neon);
+  }
+  90.01% {
+    box-shadow:none;
+    border-color:var(--off-neon);
+  }
+  94% {
+    box-shadow:none;
+    border-color:var(--off-neon);
+  }
+  94.01% {
+    box-shadow:var(--neon-shadow);
+    border-color:var(--primary-neon);
+  }
+  95% {
+    box-shadow:var(--neon-shadow);
+    border-color:var(--primary-neon);
+  }
+  95.01% {
+    box-shadow:none;
+    border-color:var(--off-neon);
+  }
+  95.5% {
+    box-shadow:none;
+    border-color:var(--off-neon);
+  }
+  95.51% {
+    box-shadow:var(--neon-shadow);
+    border-color:var(--primary-neon);
+  }
+  96% {
+    box-shadow:var(--neon-shadow);
+    border-color:var(--primary-neon);
+  }
+  96.01% {
+    box-shadow:none;
+    border-color:var(--off-neon);
+  }
+  96.5% {
+    box-shadow:none;
+    border-color:var(--off-neon);
+  }
+  96.51% {
+    box-shadow:var(--neon-shadow-bright);
+    border-color:var(--primary-neon);
+  }
+  100% {
+    box-shadow:var(--neon-shadow);
+    border-color:var(--primary-neon);
   }
 }

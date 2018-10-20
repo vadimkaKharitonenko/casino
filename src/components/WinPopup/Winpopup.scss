@@ -1,33 +1,30 @@
-.Slot {
+.Winpopup {
   position: absolute;
-  top: -2000px;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  padding: 10px;
-  filter: blur(0px);
+  top: 0;
+  left: 18%;
+  width: 400px;
+  background-color: black;
+  font-size: 1.4rem;
+  text-align: center;
+  opacity: 0;
   transition: 1s ease-in-out;
+  color: white;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #0ff,
+    0 0 80px #0ff,
+    0 0 90px #0ff,
+    0 0 100px #0ff,
+    0 0 150px #0ff;
+  background: black;
+  border: 1px solid rgb(76, 159, 143);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(187, 254, 241), 0 0 10px rgb(187, 254, 241) inset;  
+  transition: all .2s linear;
 
-  &:nth-child(2) {
-    left: 32.4%;
-  }
-
-  &:nth-child(3) {
-    left: 65%;
-  }
-
-  .Slot__item {
-    display: flex;
-    justify-content: center;
-    width: 180px;
-    min-height: 120px;
-    color: transparent;
-    font-size: 2.5rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-
-    --primary-neon:rgb(80, 234, 204);
+  --primary-neon:rgb(80, 234, 204);
     --light-neon:rgb(187, 254, 241);
     --pulse-neon:rgb(76, 159, 143);
     --bright-neon:rgb(144, 185, 177);
@@ -48,17 +45,7 @@
     font-size:3vw;
     font-weight:bold;
     box-shadow:var(--neon-shadow);
-    animation:flicker 8s linear infinite, moveSymbol 1s;
-  }
-}
-
-@keyframes moveSymbol {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    animation:flicker 8s linear infinite;
 }
 
 @keyframes flicker {

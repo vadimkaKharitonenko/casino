@@ -23,7 +23,7 @@ class Balance extends Component {
 
   render() {
     return(
-      <div className="balance">Баланс: {this.props.currentBalance}</div>
+      <div className="balance">Сабжи<br/> {this.props.currentBalance}</div>
     )
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './Bet.scss';
+import hard from '../../sounds/hard.mp3';
 
 class Bet extends Component {
   constructor(props) {
@@ -17,7 +18,9 @@ class Bet extends Component {
 
   betUp = () => { // поднять ставку
     if (this.currentBet === this.maxBet) {
-       
+      const audio4 = ReactDOM.findDOMNode(this._audio4);
+      audio4.volume = 0.01;
+      audio4.play();
     } else {
       this.currentBet = this.currentBet + 20;
       this.setState({ // обновить компонент
@@ -55,10 +58,11 @@ class Bet extends Component {
   render() {
     return(
       <div className="Bet">
-        Ставка: {this.currentBet}
+        Ставка <br/> {this.currentBet}
         <div className="bet-control">
-          <button className="betUp" onClick={this.betUp} ref={(node) => {this._betUp = node;}}>Up</button>
-          <button className="betDown" onClick={this.betDown} ref={(node) => {this._betDown = node;}}>Down</button>
+          <button className="betUp" onClick={this.betUp} ref={(node) => {this._betUp = node;}}>&and;</button>
+          <button className="betDown" onClick={this.betDown} ref={(node) => {this._betDown = node;}}>&or;</button>
+          <audio src={hard} ref={(node) => {this._audio4 = node;}}></audio>
         </div>
       </div>
     )
