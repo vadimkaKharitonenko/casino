@@ -28,8 +28,6 @@ class Slots extends Component {
       isUpdate: true,
     });
 
-    this.getBetButtonsControl(); // получаем кнопки управления величиной ставки
-
     const barControl = ReactDOM.findDOMNode(this._spinButton); // находим кнопку спина
 
     barControl.disabled = true;                                // и деактивируем ее
@@ -38,6 +36,19 @@ class Slots extends Component {
       barControl.disabled = false;                             // а после прокрутки, снова активируем
     },3000);                                                   
 
+    console.log(this.betUpNode);
+
+    if (this.betUpNode !== (undefined || '')) {
+      this.betUpNode.disabled = true;
+      this.betDownNode.disabled = true;
+    }
+
+    if (this.betUpNode !== (undefined || '')) {
+      setTimeout(() => {
+        this.betUpNode.disabled = false;
+        this.betDownNode.disabled = false;
+      }, 3000);
+    }
 
     this.balance -= this.currentBet; // вычитаем из баланса сумму ставки
 
@@ -97,16 +108,6 @@ class Slots extends Component {
   getBetButtonsControl = (button1, button2) => { // функция отключения кнопок управления ставкой
     this.betUpNode = button1;                    // на время вращения спина
     this.betDownNode = button2;
-
-    if (this.betUpNode !== undefined) {
-      this.betUpNode.disabled = true;
-      this.betDownNode.disabled = true;
-    }
-
-    setTimeout(() => {
-      this.betUpNode.disabled = false;
-      this.betDownNode.disabled = false;
-    }, 3000);
   }
 
   shouldComponentUpdate(nextState) { // обновляем

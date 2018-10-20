@@ -41,11 +41,15 @@ class Bet extends Component {
     this.props.getBet(this.currentBet); // передаем в родителя текущую ставку
   }
 
-  componentDidUpdate() {
+  sendBetControls = () => {
     const betUpNode = ReactDOM.findDOMNode(this._betUp);     // получаем ноду кнопки повышения ставки
     const betDownNode = ReactDOM.findDOMNode(this._betDown); // и понижения ставки
-    
+  
     this.props.getBetControls(betUpNode, betDownNode);       // отправляем кнопки в родителя
+  }
+
+  componentDidMount() {
+    this.sendBetControls();
   }
 
   render() {
