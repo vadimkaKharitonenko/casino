@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "9aab2117d9cec40c9b00ba7d808b90ca",
-    "url": "/casino/static/media/Wild.9aab2117.png"
+    "revision": "5f9c6e27d64049fa205f6365b57fd008",
+    "url": "/casino/static/media/Wild.5f9c6e27.png"
   },
   {
-    "revision": "d6dfdf2695bdabc885e8",
-    "url": "/casino/static/css/main.f4f1b0d5.chunk.css"
+    "revision": "2102b4d61a1f8e0c8dc1",
+    "url": "/casino/static/css/main.44797891.chunk.css"
   },
   {
     "revision": "88f8a2f34017926ab390",
@@ -16,24 +16,24 @@ self.__precacheManifest = [
     "url": "/casino/static/js/runtime~main.9c0fa8da.js"
   },
   {
-    "revision": "ca613ad17e5e3d392fc698d4b4a15fa4",
-    "url": "/casino/static/media/J.ca613ad1.png"
+    "revision": "2b37a63da3a2d3997bf7575425c4f930",
+    "url": "/casino/static/media/J.2b37a63d.png"
   },
   {
-    "revision": "3296027a50cf4bd39711aaf2b512c821",
-    "url": "/casino/static/media/Q.3296027a.png"
+    "revision": "9ff6ec07bab25edaacd6323df3c36de1",
+    "url": "/casino/static/media/Q.9ff6ec07.png"
   },
   {
-    "revision": "9fe84f71cfb042d948e24d538c020097",
-    "url": "/casino/static/media/K.9fe84f71.png"
+    "revision": "c3bd93a99daf0adb5a16813f6ad70ac0",
+    "url": "/casino/static/media/K.c3bd93a9.png"
   },
   {
-    "revision": "1c7a04cbf6c58916501a72ac3ff9f755",
-    "url": "/casino/static/media/A.1c7a04cb.png"
+    "revision": "142d96adf4bd07f7713567f7c5c50422",
+    "url": "/casino/static/media/A.142d96ad.png"
   },
   {
-    "revision": "d6dfdf2695bdabc885e8",
-    "url": "/casino/static/js/main.d6dfdf26.chunk.js"
+    "revision": "2102b4d61a1f8e0c8dc1",
+    "url": "/casino/static/js/main.2102b4d6.chunk.js"
   },
   {
     "revision": "2128e1d097dae4a6a69d00766334b8b5",
@@ -56,11 +56,11 @@ self.__precacheManifest = [
     "url": "/casino/static/media/opening.3ad9afd2.mp3"
   },
   {
-    "revision": "7964d6b7a8e85751cc95ecd139255318",
-    "url": "/casino/static/media/bg.7964d6b7.png"
+    "revision": "dd12fe6710e9c28b3edd663d1467dd67",
+    "url": "/casino/static/media/bg.dd12fe67.png"
   },
   {
-    "revision": "3b78d2c9e17cba7aeb94657374409a7b",
+    "revision": "4a3333e3900aca12e2d673332c1758e9",
     "url": "/casino/index.html"
   }
 ];
